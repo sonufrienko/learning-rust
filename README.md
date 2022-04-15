@@ -1,5 +1,7 @@
 # Learning Rust
 
+![](logo.jpeg)
+
 ## Projects
 
 `p1_var` -
