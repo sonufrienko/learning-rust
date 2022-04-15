@@ -1,5 +1,5 @@
 [package]
-name = "p1_hello"
+name = "p1_var"
 version = "0.1.0"
 edition = "2021"
 
