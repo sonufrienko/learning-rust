@@ -21,4 +21,34 @@ fn main() {
 
     let slice = &lucky_numbers[0..2];
     println!("Slice: {:?}", slice);
+
+    println!("---");
+
+    // Vec
+    let new_friends = vec!["Max", "Lora"];
+    let mut friends = vec!["Sergii", "Nick", "Alex", "Rex"];
+    friends.push("Antonio");
+    friends.sort();
+    println!("Sorted friends:\n{:?}", friends);
+
+    friends.extend(new_friends);
+    friends.sort();
+    println!("All friends:\n{:?}\nCount: {}", friends, friends.len());
+
+    println!("You have Rex in friends: {}", friends.contains(&"Rex"));
+
+    friends.push("Rex");
+    println!("You hace duplications: {:?}", friends);
+    friends.sort();
+    friends.dedup();
+    println!("Duplications removed: {:?}", friends);
+
+    let messages = friends
+        .iter()
+        .filter(|friend| friend != &&"Rex")
+        .map(|friend| format!("Hello {}!", friend));
+
+    for msg in messages {
+        println!("{}", msg)
+    }
 }
