@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 fn main() {
     // Array
     let lucky_numbers: [i32; 3] = [5, 8, 12];
@@ -51,4 +53,46 @@ fn main() {
     for msg in messages {
         println!("{}", msg)
     }
+
+    // HashMap
+    let mut cache: HashMap<String, String> = HashMap::new();
+    cache.insert(
+        String::from("user:1"),
+        String::from("{ `\"name\": \"Sergii\" }"),
+    );
+
+    let cache_key1 = String::from("user:1");
+    let cache_key2 = String::from("user:2");
+    if cache.contains_key(&cache_key1) {
+        println!("{} key exists", cache_key1);
+    }
+
+    let cache_value1 = cache.get(&cache_key1);
+    let cache_value2 = cache.get(&cache_key2);
+
+    if cache_value1.is_some() {
+        println!("cache_value1 = {}", cache_value1.unwrap())
+    }
+
+    println!(
+        "cache_value2 or default = {}",
+        cache_value2
+            .or(Some(&String::from("default-value")))
+            .unwrap()
+    );
+
+    cache
+        .entry(cache_key2.clone())
+        .or_insert(String::from("{ \"name\": \"New Alex\" }"));
+
+    println!("value2 = {}", cache.get(&cache_key2).unwrap());
+
+    *cache.get_mut(&cache_key2).unwrap() = String::from("{ \"name\": \"NewName1\" }");
+
+    println!("value2 = {}", cache.get(&cache_key2).unwrap());
+
+    if let Some(val) = cache.get_mut(&cache_key2) {
+        *val = String::from("{ \"name\": \"NewName2\" }");
+    }
+    println!("value2 = {}", cache.get(&cache_key2).unwrap());
 }
